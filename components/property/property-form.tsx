@@ -125,11 +125,12 @@ export function PropertyForm({ property, onSubmit }: PropertyFormProps) {
     if (editingUnit) {
       setFormData((prev) => ({
         ...prev,
-        units: prev.units?.map((u) =>
-          u.id === editingUnit.id
-            ? { ...u, ...unitData, id: editingUnit.id }
+        units: prev.units?.map((u) => {
+          const unit = u as Unit
+          return unit.id === editingUnit.id
+            ? { ...unit, ...unitData, id: editingUnit.id }
             : u
-        ),
+        }),
       }))
     } else {
       const newUnit: Unit = {
@@ -476,8 +477,10 @@ export function PropertyForm({ property, onSubmit }: PropertyFormProps) {
 
             {formData.units && formData.units.length > 0 ? (
               <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-                {formData.units.map((unit) => (
-                  <Card key={unit.id}>
+                {formData.units.map((unit, index) => {
+                  const unitWithId = unit as Unit
+                  return (
+                  <Card key={unitWithId.id || `unit-${index}`}>
                     <CardContent className="pt-6">
                       <div className="flex items-start justify-between">
                         <div>
@@ -495,7 +498,7 @@ export function PropertyForm({ property, onSubmit }: PropertyFormProps) {
                             variant="ghost"
                             size="sm"
                             onClick={() => {
-                              setEditingUnit(unit)
+                              setEditingUnit(unitWithId)
                               setUnitFormOpen(true)
                             }}
                           >
@@ -505,7 +508,7 @@ export function PropertyForm({ property, onSubmit }: PropertyFormProps) {
                             type="button"
                             variant="ghost"
                             size="sm"
-                            onClick={() => handleDeleteUnit(unit.id)}
+                            onClick={() => handleDeleteUnit(unitWithId.id)}
                           >
                             Supprimer
                           </Button>
