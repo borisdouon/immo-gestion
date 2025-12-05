@@ -149,7 +149,10 @@ export function PropertyForm({ property, onSubmit }: PropertyFormProps) {
   const handleDeleteUnit = (unitId: string) => {
     setFormData((prev) => ({
       ...prev,
-      units: prev.units?.filter((u) => u.id !== unitId),
+      units: prev.units?.filter((u) => {
+        const unit = u as Unit
+        return unit.id !== unitId
+      }),
     }))
   }
 
