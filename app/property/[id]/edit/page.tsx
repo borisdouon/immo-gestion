@@ -1,6 +1,7 @@
 "use client"
 
-import { useRouter, notFound } from "next/navigation"
+import { useRouter, useParams } from "next/navigation"
+import { notFound } from "next/navigation"
 import { PropertyForm } from "@/components/property/property-form"
 import { getPropertyById } from "@/lib/mock-data/properties"
 import { Button } from "@/components/ui/button"
@@ -9,14 +10,9 @@ import Link from "next/link"
 import type { PropertyFormData } from "@/lib/schemas/property"
 import { toast } from "sonner"
 
-interface PropertyEditPageProps {
-  readonly params: Promise<{
-    id: string
-  }>
-}
-
-export default async function PropertyEditPage({ params }: PropertyEditPageProps) {
-  const { id } = await params
+export default function PropertyEditPage() {
+  const params = useParams()
+  const id = params.id as string
   const property = getPropertyById(id)
 
   if (!property) {

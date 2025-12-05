@@ -33,9 +33,6 @@ const nextConfig: NextConfig = {
     ],
   },
 
-  // Production optimizations
-  swcMinify: true,
-  
   // Power optimization
   poweredByHeader: false,
 };

@@ -1,6 +1,6 @@
 "use client"
 
-import { use, useRouter } from "next/navigation"
+import { useRouter, useParams } from "next/navigation"
 import { notFound } from "next/navigation"
 import { TenantForm } from "@/components/tenant/tenant-form"
 import { Button } from "@/components/ui/button"
@@ -10,14 +10,9 @@ import { getTenantById } from "@/lib/mock-data/tenants"
 import { type TenantFormData } from "@/lib/schemas/tenant"
 import { toast } from "sonner"
 
-interface EditTenantPageProps {
-  params: Promise<{
-    id: string
-  }>
-}
-
-export default function EditTenantPage({ params }: EditTenantPageProps) {
-  const { id } = use(params)
+export default function EditTenantPage() {
+  const params = useParams()
+  const id = params.id as string
   const router = useRouter()
   const tenant = getTenantById(id)
 
