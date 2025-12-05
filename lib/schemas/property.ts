@@ -10,9 +10,7 @@ export const unitFormSchema = z.object({
   rooms: z.coerce.number().int().min(1, VALIDATION_MESSAGES.positive),
   size: z.coerce.number().positive(VALIDATION_MESSAGES.positive),
   rent: z.coerce.number().positive(VALIDATION_MESSAGES.positive),
-  status: z.enum(['Libre', 'Réservé', 'Occupé', 'En Maintenance'], {
-    required_error: VALIDATION_MESSAGES.required,
-  }),
+  status: z.enum(['Libre', 'Réservé', 'Occupé', 'En Maintenance']),
 })
 
 export const propertyFormSchema = z.object({
@@ -20,12 +18,8 @@ export const propertyFormSchema = z.object({
     .string()
     .min(1, VALIDATION_MESSAGES.required)
     .min(3, VALIDATION_MESSAGES.minLength(3)),
-  type: z.enum(['Maison', 'Villa', 'Immeuble', 'Commercial'], {
-    required_error: VALIDATION_MESSAGES.required,
-  }),
-  status: z.enum(['Libre', 'Réservé', 'Occupé', 'En Maintenance'], {
-    required_error: VALIDATION_MESSAGES.required,
-  }),
+  type: z.enum(['Maison', 'Villa', 'Immeuble', 'Commercial']),
+  status: z.enum(['Libre', 'Réservé', 'Occupé', 'En Maintenance']),
   address: z.object({
     street: z.string().min(1, VALIDATION_MESSAGES.required),
     city: z.string().min(1, VALIDATION_MESSAGES.required),

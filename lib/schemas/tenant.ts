@@ -41,9 +41,7 @@ export const tenantFormSchema = z.object({
   employer: z.string().optional(),
   occupation: z.string().optional(),
   emergencyContact: emergencyContactSchema.optional(),
-  status: z.enum(['Actif', 'Inactif', 'En Attente', 'Résilié'], {
-    required_error: VALIDATION_MESSAGES.required,
-  }),
+  status: z.enum(['Actif', 'Inactif', 'En Attente', 'Résilié']),
   moveInDate: z.string().optional(),
   moveOutDate: z.string().optional(),
   currentPropertyId: z.string().optional(),
