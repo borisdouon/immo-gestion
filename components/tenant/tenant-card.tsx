@@ -6,9 +6,13 @@ import { IconMail, IconPhone, IconMapPin, IconArrowUpRight, IconCalendar } from 
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { cn } from "@/lib/utils"
-import type { Tenant } from "@/lib/types/tenant"
+import type { Tenant, TenantStatus } from "@/lib/types/tenant"
 
-const statusConfig = {
+const statusConfig: Record<TenantStatus, { 
+  color: string
+  dotColor: string
+  bgLight: string
+}> = {
   'Actif': { 
     color: 'bg-emerald-500 text-white shadow-emerald-500/30', 
     dotColor: 'bg-emerald-500',
@@ -23,6 +27,11 @@ const statusConfig = {
     color: 'bg-gray-500 text-white shadow-gray-500/30', 
     dotColor: 'bg-gray-400',
     bgLight: 'bg-gray-50 dark:bg-gray-950/20'
+  },
+  'Résilié': { 
+    color: 'bg-rose-500 text-white shadow-rose-500/30', 
+    dotColor: 'bg-rose-500',
+    bgLight: 'bg-rose-50 dark:bg-rose-950/20'
   },
 }
 
@@ -49,7 +58,7 @@ function formatDate(dateString?: string): string {
 function TenantCardComponent({ tenant }: TenantCardProps) {
   const initials = getInitials(tenant.firstName, tenant.lastName)
   const moveInDateFormatted = formatDate(tenant.moveInDate)
-  const status = statusConfig[tenant.status] || statusConfig['Inactif']
+  const status = statusConfig[tenant.status]
 
   return (
     <Link href={`/tenant/${tenant.id}`}>
