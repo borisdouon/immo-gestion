@@ -480,43 +480,44 @@ export function PropertyForm({ property, onSubmit }: PropertyFormProps) {
                 {formData.units.map((unit, index) => {
                   const unitWithId = unit as Unit
                   return (
-                  <Card key={unitWithId.id || `unit-${index}`}>
-                    <CardContent className="pt-6">
-                      <div className="flex items-start justify-between">
-                        <div>
-                          <h4 className="font-semibold">{unit.number}</h4>
-                          <p className="text-sm text-muted-foreground">
-                            {unit.rooms} chambre(s) • {unit.size}m²
-                          </p>
-                          <p className="text-sm font-medium mt-1">
-                            {unit.rent.toLocaleString('fr-FR')} FCFA/mois
-                          </p>
+                    <Card key={unitWithId.id || `unit-${index}`}>
+                      <CardContent className="pt-6">
+                        <div className="flex items-start justify-between">
+                          <div>
+                            <h4 className="font-semibold">{unit.number}</h4>
+                            <p className="text-sm text-muted-foreground">
+                              {unit.rooms} chambre(s) • {unit.size}m²
+                            </p>
+                            <p className="text-sm font-medium mt-1">
+                              {unit.rent.toLocaleString('fr-FR')} FCFA/mois
+                            </p>
+                          </div>
+                          <div className="flex gap-2">
+                            <Button
+                              type="button"
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => {
+                                setEditingUnit(unitWithId)
+                                setUnitFormOpen(true)
+                              }}
+                            >
+                              Modifier
+                            </Button>
+                            <Button
+                              type="button"
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => handleDeleteUnit(unitWithId.id)}
+                            >
+                              Supprimer
+                            </Button>
+                          </div>
                         </div>
-                        <div className="flex gap-2">
-                          <Button
-                            type="button"
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => {
-                              setEditingUnit(unitWithId)
-                              setUnitFormOpen(true)
-                            }}
-                          >
-                            Modifier
-                          </Button>
-                          <Button
-                            type="button"
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => handleDeleteUnit(unitWithId.id)}
-                          >
-                            Supprimer
-                          </Button>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
+                      </CardContent>
+                    </Card>
+                  )
+                })}
               </div>
             ) : (
               <Card>
