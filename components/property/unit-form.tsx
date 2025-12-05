@@ -120,7 +120,7 @@ export function UnitForm({
       toast.success(unit ? 'Logement modifié avec succès' : 'Logement créé avec succès')
     } else {
       const newErrors: Record<string, string> = {}
-      result.error.errors.forEach((err) => {
+      result.error.issues.forEach((err) => {
         if (err.path[0]) {
           newErrors[err.path[0].toString()] = err.message
         }

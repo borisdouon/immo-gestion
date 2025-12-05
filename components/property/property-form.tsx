@@ -165,7 +165,7 @@ export function PropertyForm({ property, onSubmit }: PropertyFormProps) {
       toast.success(property ? 'Propriété modifiée avec succès' : 'Propriété créée avec succès')
     } else {
       const newErrors: Record<string, string> = {}
-      result.error.errors.forEach((err) => {
+      result.error.issues.forEach((err) => {
         if (err.path.length > 0) {
           const fieldPath = err.path.join('.')
           newErrors[fieldPath] = err.message
