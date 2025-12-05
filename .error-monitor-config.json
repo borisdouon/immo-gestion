@@ -1,0 +1,35 @@
+{
+  "enabled": true,
+  "autoFix": true,
+  "logLevel": "INFO",
+  "watchFiles": true,
+  "patterns": {
+    "typescript": true,
+    "eslint": true,
+    "import": true,
+    "build": true,
+    "dependency": true,
+    "syntax": true,
+    "type": true
+  },
+  "fixStrategies": {
+    "installMissingPackages": true,
+    "fixImports": true,
+    "removeUnused": true,
+    "fixSyntax": true,
+    "fixTypes": true
+  },
+  "ignoredPaths": [
+    "node_modules",
+    ".next",
+    ".git",
+    "dist",
+    "build"
+  ]
+}
+
+
+
+
+
+

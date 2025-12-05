@@ -1,8 +1,37 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@custom-variant dark (&:is(.dark *));
+
+/* Mobile-first responsive utilities */
+@layer utilities {
+  /* Touch optimization */
+  .touch-manipulation {
+    touch-action: manipulation;
+  }
+  
+  /* Prevent text selection on mobile for better UX */
+  .no-select {
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  
+  /* Safe area insets for mobile devices */
+  .safe-top {
+    padding-top: env(safe-area-inset-top);
+  }
+  
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  
+  .safe-left {
+    padding-left: env(safe-area-inset-left);
+  }
+  
+  .safe-right {
+    padding-right: env(safe-area-inset-right);
+  }
 }
 
 @theme inline {
@@ -10,17 +39,291 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-muted: var(--sidebar-muted);
+  --color-sidebar-active: var(--sidebar-active);
+  --color-sidebar-active-foreground: var(--sidebar-active-foreground);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  --radius: 0.625rem;
+  --background: oklch(0.985 0.002 90);
+  --foreground: oklch(0.145 0.035 265);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0.035 265);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0.035 265);
+  --primary: oklch(0.55 0.18 25);
+  --primary-foreground: oklch(0.985 0.002 90);
+  --secondary: oklch(0.965 0.015 60);
+  --secondary-foreground: oklch(0.25 0.035 265);
+  --muted: oklch(0.965 0.01 90);
+  --muted-foreground: oklch(0.5 0.03 265);
+  --accent: oklch(0.95 0.04 50);
+  --accent-foreground: oklch(0.25 0.035 265);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.92 0.01 90);
+  --input: oklch(0.92 0.01 90);
+  --ring: oklch(0.55 0.18 25);
+  --chart-1: oklch(0.65 0.19 145);
+  --chart-2: oklch(0.6 0.17 230);
+  --chart-3: oklch(0.65 0.2 35);
+  --chart-4: oklch(0.7 0.15 55);
+  --chart-5: oklch(0.55 0.22 320);
+  --sidebar: oklch(0.995 0.005 60);
+  --sidebar-foreground: oklch(0.25 0.02 45);
+  --sidebar-primary: oklch(0.65 0.2 30);
+  --sidebar-primary-foreground: oklch(0.98 0.01 60);
+  --sidebar-accent: oklch(0.96 0.04 45);
+  --sidebar-accent-foreground: oklch(0.35 0.03 40);
+  --sidebar-border: oklch(0.93 0.02 55);
+  --sidebar-ring: oklch(0.65 0.2 30);
+  --sidebar-muted: oklch(0.55 0.02 45);
+  --sidebar-active: oklch(0.65 0.2 30);
+  --sidebar-active-foreground: oklch(0.98 0.01 60);
+}
+
+.dark {
+  --background: oklch(0.129 0.042 264.695);
+  --foreground: oklch(0.984 0.003 247.858);
+  --card: oklch(0.208 0.042 265.755);
+  --card-foreground: oklch(0.984 0.003 247.858);
+  --popover: oklch(0.208 0.042 265.755);
+  --popover-foreground: oklch(0.984 0.003 247.858);
+  --primary: oklch(0.929 0.013 255.508);
+  --primary-foreground: oklch(0.208 0.042 265.755);
+  --secondary: oklch(0.279 0.041 260.031);
+  --secondary-foreground: oklch(0.984 0.003 247.858);
+  --muted: oklch(0.279 0.041 260.031);
+  --muted-foreground: oklch(0.704 0.04 256.788);
+  --accent: oklch(0.279 0.041 260.031);
+  --accent-foreground: oklch(0.984 0.003 247.858);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.551 0.027 264.364);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.18 0.02 40);
+  --sidebar-foreground: oklch(0.92 0.02 60);
+  --sidebar-primary: oklch(0.7 0.18 30);
+  --sidebar-primary-foreground: oklch(0.15 0.02 40);
+  --sidebar-accent: oklch(0.25 0.04 40);
+  --sidebar-accent-foreground: oklch(0.95 0.02 60);
+  --sidebar-border: oklch(0.3 0.02 40);
+  --sidebar-ring: oklch(0.7 0.18 30);
+  --sidebar-muted: oklch(0.6 0.02 60);
+  --sidebar-active: oklch(0.7 0.18 30);
+  --sidebar-active-foreground: oklch(0.15 0.02 40);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  
+  /* Improve touch targets on mobile */
+  @media (max-width: 768px) {
+    button, a, input, select, textarea {
+      min-height: 44px;
+    }
+  }
+  
+  /* Prevent horizontal scroll on mobile */
+  html, body {
+    overflow-x: hidden;
+    max-width: 100vw;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ═══════════════════════════════════════════════════════════════════════════
+   SIDEBAR HOVER ANIMATIONS - ImmoGestion CRM
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@layer utilities {
+  /* Bell swing animation for notifications */
+  @keyframes swing {
+    0%, 100% { transform: rotate(0deg); }
+    20% { transform: rotate(12deg); }
+    40% { transform: rotate(-10deg); }
+    60% { transform: rotate(6deg); }
+    80% { transform: rotate(-4deg); }
+  }
+  .group:hover .icon-bell {
+    animation: swing 0.6s ease-in-out;
+    transform-origin: top center;
+  }
+
+  /* Gear rotation for settings */
+  @keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(90deg); }
+  }
+  .group:hover .icon-settings {
+    animation: spin-slow 0.4s ease-out forwards;
+  }
+
+  /* Wiggle animation for users/tenants */
+  @keyframes wiggle {
+    0%, 100% { transform: translateX(0) scale(1); }
+    20% { transform: translateX(-2px) scale(1.05); }
+    40% { transform: translateX(2px) scale(1.05); }
+    60% { transform: translateX(-1px) scale(1.02); }
+    80% { transform: translateX(1px) scale(1.02); }
+  }
+  .group:hover .icon-users {
+    animation: wiggle 0.5s ease-in-out;
+  }
+
+  /* Building pulse/grow for properties */
+  @keyframes building-grow {
+    0%, 100% { transform: scale(1) translateY(0); }
+    50% { transform: scale(1.15) translateY(-2px); }
+  }
+  .group:hover .icon-building {
+    animation: building-grow 0.4s ease-out;
+  }
+
+  /* Document unfold for contracts */
+  @keyframes unfold {
+    0% { transform: rotateY(0deg) scale(1); }
+    50% { transform: rotateY(15deg) scale(1.1); }
+    100% { transform: rotateY(0deg) scale(1.05); }
+  }
+  .group:hover .icon-document {
+    animation: unfold 0.4s ease-out forwards;
+  }
+
+  /* Coin flip for finances */
+  @keyframes coin-flip {
+    0% { transform: rotateY(0deg); }
+    100% { transform: rotateY(360deg); }
+  }
+  .group:hover .icon-currency {
+    animation: coin-flip 0.6s ease-in-out;
+  }
+
+  /* Wrench turn for maintenance */
+  @keyframes wrench-turn {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-20deg); }
+    75% { transform: rotate(20deg); }
+  }
+  .group:hover .icon-tool {
+    animation: wrench-turn 0.4s ease-in-out;
+  }
+
+  /* Chart bars grow for reports */
+  @keyframes bars-grow {
+    0%, 100% { transform: scaleY(1); }
+    50% { transform: scaleY(1.2); }
+  }
+  .group:hover .icon-chart {
+    animation: bars-grow 0.3s ease-out;
+    transform-origin: bottom center;
+  }
+
+  /* Dashboard pulse for overview */
+  @keyframes dashboard-pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.12); opacity: 0.9; }
+  }
+  .group:hover .icon-dashboard {
+    animation: dashboard-pulse 0.4s ease-out;
+  }
+
+  /* Help icon bounce */
+  @keyframes help-bounce {
+    0%, 100% { transform: translateY(0); }
+    30% { transform: translateY(-3px); }
+    60% { transform: translateY(-1px); }
+  }
+  .group:hover .icon-help {
+    animation: help-bounce 0.4s ease-out;
+  }
+
+  /* Badge pop animation */
+  @keyframes badge-pop {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+  }
+  .group:hover .sidebar-badge {
+    animation: badge-pop 0.3s ease-out 0.1s;
+  }
+
+  /* Glow ring expansion behind icons */
+  @keyframes glow-expand {
+    0% { transform: scale(0); opacity: 0; }
+    50% { opacity: 1; }
+    100% { transform: scale(1.8); opacity: 0; }
+  }
+  .icon-glow-ring {
+    @apply absolute inset-0 rounded-full bg-orange-500/30;
+    transform: scale(0);
+    pointer-events: none;
+  }
+  .group:hover .icon-glow-ring {
+    animation: glow-expand 0.5s ease-out;
+  }
+
+  /* Sidebar menu item hover slide */
+  .sidebar-item-hover {
+    @apply relative overflow-hidden;
+  }
+  .sidebar-item-hover::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-orange-500/10 via-amber-500/5 to-transparent;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-out;
+  }
+  .sidebar-item-hover:hover::before {
+    transform: translateX(0);
+  }
+
+  /* Active indicator animation */
+  @keyframes indicator-appear {
+    0% { height: 0; opacity: 0; }
+    100% { height: 1.75rem; opacity: 1; }
+  }
+  .active-indicator {
+    animation: indicator-appear 0.3s ease-out forwards;
+  }
 }
